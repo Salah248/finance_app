@@ -1,18 +1,34 @@
 class AppSize {
   static const double screenHeight = 812;
   static const double screenWidth = 375;
-  static const double h38 = 38;
-  static const double h41 = 41;
-  static const double h48 = 48;
-  static const double h56 = 56;
-  static const double w100 = 100;
-  static const double w101 = 101;
-  static const double h140 = 140;
-  static const double w156 = 156;
-  static const double h142 = 142;
-  static const double h179 = 179;
-  static const double h263 = 263;
-  static const double w331 = 331;
+  static const double s10 = 10;
+  static const double s12 = 12;
+  static const double s15 = 15;
+  static const double s18 = 18;
+  static const double s19 = 19;
+  static const double s20 = 20;
+  static const double d21 = 21.116872787475586;
+  static const double d23 = 23.63637351989746;
+  static const double s24 = 24;
+  static const double d26 = 26.012187957763672;
+  static const double s26 = 26;
+  static const double s38 = 38;
+  static const double s41 = 41;
+  static const double s48 = 48;
+  static const double s56 = 56;
+  static const double s95 = 95;
+  static const double s100 = 100;
+  static const double s101 = 101;
+  static const double s105 = 105;
+  static const double s111 = 111;
+  static const double s112 = 112;
+  static const double s140 = 140;
+  static const double s156 = 156;
+  static const double s142 = 142;
+  static const double s179 = 179;
+  static const double s263 = 263;
+  static const double s331 = 331;
+  static const double s570 = 570;
 }
 
 class RaduisSize {
