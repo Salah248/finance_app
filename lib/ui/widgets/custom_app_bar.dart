@@ -7,9 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.supTitle = '',
+    this.isSupTitle = true,
+  });
   final String title;
-
+  final String? supTitle;
+  final bool? isSupTitle;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,6 +31,16 @@ class CustomAppBar extends StatelessWidget {
             fontSize: FontSize.fs30.sp,
           ),
         ),
+        SizedBox(height: AppSize.s20.h),
+        isSupTitle!
+            ? Text(
+                supTitle!,
+                style: StyleManager.urbanistMeduim.copyWith(
+                  color: ColorManager.gray,
+                  fontSize: FontSize.fs16.sp,
+                ),
+              )
+            : const SizedBox(),
       ],
     );
   }

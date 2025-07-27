@@ -24,6 +24,8 @@ class CustomTextFormField extends StatelessWidget {
       enabled: false,
       obscureText: obscureText!,
       decoration: InputDecoration(
+        fillColor: const Color(0xffF7F8F9),
+        filled: true,
         suffixIcon: suffixIcon,
         labelText: label,
         labelStyle: StyleManager.urbanistMeduim.copyWith(
@@ -32,6 +34,11 @@ class CustomTextFormField extends StatelessWidget {
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(RaduisSize.r8.r),
+          borderSide: const BorderSide(color: Color(0xffE8ECF4)),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(RaduisSize.r8.r),
+          borderSide: const BorderSide(color: Color(0xffE8ECF4)),
         ),
       ),
     );

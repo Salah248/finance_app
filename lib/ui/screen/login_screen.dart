@@ -32,7 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: AppSize.s20.h),
-              const CustomAppBar(title: 'Welcome back!\nAgain!'),
+              const CustomAppBar(
+                title: 'Welcome back!\nAgain!',
+                isSupTitle: false,
+              ),
               SizedBox(height: AppSize.s20.h),
               const CustomTextFormField(label: 'Enter your email'),
               SizedBox(height: AppSize.s15.h),

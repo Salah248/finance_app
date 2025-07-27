@@ -9,4 +9,5 @@ class IconsManager {
   static const String facebook = 'asset/icons/facebook_ic.svg';
   static const String google = 'asset/icons/google_ic.svg';
   static const String group = 'asset/icons/Group.svg';
+  static const String vector = 'asset/icons/Vector.svg';
 }
