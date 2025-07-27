@@ -31,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: AppSize.s20.h),
               const CustomAppBar(
                 title: 'Welcome back!\nAgain!',
                 isSupTitle: false,

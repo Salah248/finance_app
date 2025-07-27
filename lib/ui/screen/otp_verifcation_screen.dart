@@ -1,4 +1,12 @@
+import 'package:finance_app/resources/app_size.dart';
+import 'package:finance_app/resources/route_manager.dart';
+import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
+import 'package:finance_app/ui/widgets/custom_app_bar.dart';
+import 'package:finance_app/ui/widgets/custom_otp_field.dart';
+import 'package:finance_app/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class OtpVerifcationScreen extends StatefulWidget {
   const OtpVerifcationScreen({super.key});
@@ -10,6 +18,34 @@ class OtpVerifcationScreen extends StatefulWidget {
 class _OtpVerifcationScreenState extends State<OtpVerifcationScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(AppSize.s22.r),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomAppBar(
+              title: 'OTP Verification',
+              isSupTitle: true,
+              supTitle:
+                  'Enter the verification code we just sent on your email address.',
+            ),
+            SizedBox(height: AppSize.s26.r),
+            CustomOtpField(),
+            SizedBox(height: AppSize.s26.r),
+            CustomElevatedButton(
+              title: 'Verify',
+              onPressed: () => context.push(Routes.createNewPasswordRoute),
+            ),
+            SizedBox(height: AppSize.s56.r),
+            CustomTextRow(
+              data: 'Didn’t received code?',
+              text: 'Resend',
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

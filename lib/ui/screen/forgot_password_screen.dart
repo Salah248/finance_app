@@ -2,8 +2,8 @@ import 'package:finance_app/resources/app_size.dart';
 import 'package:finance_app/resources/route_manager.dart';
 import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
-import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
+import 'package:finance_app/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -22,8 +22,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: Padding(
         padding: EdgeInsets.all(AppSize.s22.r),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: AppSize.s15.r),
             const CustomAppBar(
               title: 'Forgot Password?',
               isSupTitle: true,
@@ -36,6 +36,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             CustomElevatedButton(
               title: 'Send Code',
               onPressed: () => context.push(Routes.otpVerifcationRoute),
+            ),
+            SizedBox(height: AppSize.s56.r),
+            CustomTextRow(
+              data: 'Remember Password?',
+              text: 'Login',
+              onPressed: () => context.push(Routes.loginRoute),
             ),
           ],
         ),

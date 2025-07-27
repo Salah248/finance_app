@@ -26,7 +26,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: AppSize.s20.h),
               const CustomAppBar(
                 title: 'Hello! Register to get\nstarted',
                 isSupTitle: false,
