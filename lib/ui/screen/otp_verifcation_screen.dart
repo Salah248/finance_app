@@ -2,6 +2,7 @@ import 'package:finance_app/resources/app_size.dart';
 import 'package:finance_app/resources/route_manager.dart';
 import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
+import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
 import 'package:finance_app/ui/widgets/custom_otp_field.dart';
 import 'package:finance_app/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,9 @@ class _OtpVerifcationScreenState extends State<OtpVerifcationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: AppSize.s15.r),
+            const CustomArrowBackButton(),
+            SizedBox(height: AppSize.s20.h),
             const CustomAppBar(
               title: 'OTP Verification',
               isSupTitle: true,

@@ -6,6 +6,7 @@ import 'package:finance_app/resources/route_manager.dart';
 import 'package:finance_app/resources/style_manager.dart';
 import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
+import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
 import 'package:finance_app/ui/widgets/custom_container.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
 import 'package:finance_app/ui/widgets/custom_text_rich.dart';
@@ -31,6 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: AppSize.s15.r),
+              const CustomArrowBackButton(),
+              SizedBox(height: AppSize.s20.h),
               const CustomAppBar(
                 title: 'Welcome back!\nAgain!',
                 isSupTitle: false,

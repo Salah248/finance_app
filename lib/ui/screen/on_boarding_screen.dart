@@ -20,6 +20,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               ImagesManager.welcomePageImage,
@@ -39,6 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               title: 'Register',
               onPressed: () => context.push(Routes.registerRoute),
             ),
+            SizedBox(height: AppSize.s15.h),
             CustomTextButton(text: 'Continue as a guest', onPressed: () {}),
           ],
         ),
