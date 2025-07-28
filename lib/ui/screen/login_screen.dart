@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:finance_app/data/db.dart';
 import 'package:finance_app/resources/app_size.dart';
 import 'package:finance_app/resources/assets_manager.dart';
 import 'package:finance_app/resources/color_manager.dart';
@@ -8,6 +11,7 @@ import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
 import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
 import 'package:finance_app/ui/widgets/custom_container.dart';
+import 'package:finance_app/ui/widgets/custom_snack_bar.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
 import 'package:finance_app/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
@@ -105,10 +109,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: AppSize.s15.h),
                 CustomElevatedButton(
                   title: 'Login',
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      print(_emailController.text);
-                      print(_passwordController.text);
+                      final user = await DbHelper.getUserByEmailAndPassword(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+
+                      if (user != null) {
+                        showSnackBar(context, 'Login successful!');
+                        context.pushReplacement(
+                          Routes.homeRoute,
+                        ); // روح للصفحة الرئيسية
+                      } else {
+                        showSnackBar(context, 'Invalid email or password');
+                      }
                     }
                   },
                 ),

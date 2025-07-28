@@ -1,9 +1,12 @@
+import 'package:finance_app/data/db.dart';
+import 'package:finance_app/data/model.dart';
 import 'package:finance_app/resources/app_size.dart';
 import 'package:finance_app/resources/route_manager.dart';
 import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
 import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
 import 'package:finance_app/ui/widgets/custom_container.dart';
+import 'package:finance_app/ui/widgets/custom_snack_bar.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
 import 'package:finance_app/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
@@ -93,11 +96,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(height: AppSize.s15.h),
                 CustomElevatedButton(
                   title: 'Register',
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       // Handle form submission
+                      final user = await DbHelper.getUserByEmailAndPassword(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                      if (user == null) {
+                        _addAuthToDb();
+                      } else {
+                        showSnackBar(
+                          context,
+                          'User already exists. Please log in or use a different email address',
+                        );
+                        return;
+                      }
+                      showSnackBar(
+                        context,
+                        'Registration successful! LogIn Now',
+                      );
                     } else {
                       // Form validation failed
+                      showSnackBar(
+                        context,
+                        'Please fill in all fields correctly',
+                      );
+                      return;
                     }
                   },
                 ),
@@ -115,6 +140,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _addAuthToDb() async {
+    final int value = await DbHelper.insertAuthData(
+      RegisterModel(
+        username: _usernameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+      ),
+    );
+    print(value);
   }
 
   @override

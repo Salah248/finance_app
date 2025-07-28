@@ -1,9 +1,12 @@
+import 'package:finance_app/data/db.dart';
 import 'package:finance_app/resources/app_size.dart';
 import 'package:finance_app/resources/route_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbHelper.initDb();
   runApp(const MyApp());
 }
 
