@@ -19,7 +19,12 @@ class CustomArrowBackButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(RaduisSize.r12),
           border: Border.all(color: const Color(0xffE8ECF4)),
         ),
-        child: SvgPicture.asset(IconsManager.vector, fit: BoxFit.scaleDown),
+        child: SvgPicture.asset(
+          IconsManager.arrowBack,
+          fit: BoxFit.none,
+          width: 8.5.w,
+          height: 14.8.h,
+        ),
       ),
     );
   }

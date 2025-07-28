@@ -17,39 +17,54 @@ class OtpVerifcationScreen extends StatefulWidget {
 }
 
 class _OtpVerifcationScreenState extends State<OtpVerifcationScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(AppSize.s22.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: AppSize.s15.r),
-            const CustomArrowBackButton(),
-            SizedBox(height: AppSize.s20.h),
-            const CustomAppBar(
-              title: 'OTP Verification',
-              isSupTitle: true,
-              supTitle:
-                  'Enter the verification code we just sent on your email address.',
-            ),
-            SizedBox(height: AppSize.s26.r),
-            CustomOtpField(),
-            SizedBox(height: AppSize.s26.r),
-            CustomElevatedButton(
-              title: 'Verify',
-              onPressed: () => context.push(Routes.createNewPasswordRoute),
-            ),
-            SizedBox(height: AppSize.s56.r),
-            CustomTextRow(
-              data: 'Didn’t received code?',
-              text: 'Resend',
-              onPressed: () {},
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: AppSize.s15.r),
+              const CustomArrowBackButton(),
+              SizedBox(height: AppSize.s20.h),
+              const CustomAppBar(
+                title: 'OTP Verification',
+                isSupTitle: true,
+                supTitle:
+                    'Enter the verification code we just sent on your email address.',
+              ),
+              SizedBox(height: AppSize.s26.r),
+              CustomOtpField(controller: _otpController),
+              SizedBox(height: AppSize.s26.r),
+              CustomElevatedButton(
+                title: 'Verify',
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    context.push(Routes.createNewPasswordRoute);
+                  }
+                },
+              ),
+              SizedBox(height: AppSize.s56.r),
+              CustomTextRow(
+                data: 'Didn’t received code?',
+                text: 'Resend',
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _otpController.dispose();
+    super.dispose();
   }
 }

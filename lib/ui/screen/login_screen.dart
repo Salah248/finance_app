@@ -11,6 +11,7 @@ import 'package:finance_app/ui/widgets/custom_container.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
 import 'package:finance_app/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -23,62 +24,114 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(22.r),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: AppSize.s15.r),
-              const CustomArrowBackButton(),
-              SizedBox(height: AppSize.s20.h),
-              const CustomAppBar(
-                title: 'Welcome back!\nAgain!',
-                isSupTitle: false,
-              ),
-              SizedBox(height: AppSize.s20.h),
-              const CustomTextFormField(label: 'Enter your email'),
-              SizedBox(height: AppSize.s15.h),
-              CustomTextFormField(
-                label: 'Enter your password',
-                suffixIcon: GestureDetector(
-                  onTap: () {},
-                  child: SvgPicture.asset(
-                    fit: BoxFit.scaleDown,
-                    IconsManager.group,
-                  ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: AppSize.s15.r),
+                const CustomArrowBackButton(),
+                SizedBox(height: AppSize.s20.h),
+                const CustomAppBar(
+                  title: 'Welcome back!\nAgain!',
+                  isSupTitle: false,
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () => context.push(Routes.forgotPasswordRoute),
-                  child: Text(
-                    'Forget password?',
-                    style: StyleManager.urbanistSemiBold.copyWith(
-                      color: ColorManager.darkGray,
-                      fontSize: FontSize.fs15.sp,
+                SizedBox(height: AppSize.s20.h),
+                CustomTextFormField(
+                  label: 'Enter your email',
+                  controller: _emailController,
+                  validator: (value) {
+                    if (value!.isEmpty || !value.contains('@')) {
+                      return 'Please enter a valid email';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: AppSize.s15.h),
+                CustomTextFormField(
+                  label: 'Enter your password',
+                  controller: _passwordController,
+                  obscureText: _isObscure,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  validator: (value) {
+                    if (value!.isEmpty || value.length < 6) {
+                      return 'Please enter a valid password';
+                    } else {
+                      return null;
+                    }
+                  },
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    },
+                    child: SvgPicture.asset(
+                      width: AppSize.s17.w,
+                      height: AppSize.s11.h,
+                      color: _isObscure
+                          ? ColorManager.darkGray
+                          : ColorManager.primary,
+
+                      fit: BoxFit.none,
+                      IconsManager.halfEye,
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: AppSize.s15.h),
-              CustomElevatedButton(title: 'Login', onPressed: () {}),
-              SizedBox(height: AppSize.s26.h),
-              const CustomContainer(data: 'Or Login with'),
-              SizedBox(height: AppSize.s41.h),
-              CustomTextRow(
-                data: 'Don’t have an account?',
-                text: 'Register Now',
-                onPressed: () => context.push(Routes.registerRoute),
-              ),
-            ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () => context.push(Routes.forgotPasswordRoute),
+                    child: Text(
+                      'Forget password?',
+                      style: StyleManager.urbanistSemiBold.copyWith(
+                        color: ColorManager.darkGray,
+                        fontSize: FontSize.fs15.sp,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: AppSize.s15.h),
+                CustomElevatedButton(
+                  title: 'Login',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print(_emailController.text);
+                      print(_passwordController.text);
+                    }
+                  },
+                ),
+                SizedBox(height: AppSize.s26.h),
+                const CustomContainer(data: 'Or Login with'),
+                SizedBox(height: AppSize.s41.h),
+                CustomTextRow(
+                  data: 'Don’t have an account?',
+                  text: 'Register Now',
+                  onPressed: () => context.push(Routes.registerRoute),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

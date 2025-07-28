@@ -17,39 +17,65 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(AppSize.s22.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: AppSize.s15.r),
-            const CustomArrowBackButton(),
-            SizedBox(height: AppSize.s20.h),
-            const CustomAppBar(
-              title: 'Forgot Password?',
-              isSupTitle: true,
-              supTitle:
-                  'Don\'t worry! It occurs. Please enter the email address linked with your account.',
-            ),
-            SizedBox(height: AppSize.s26.r),
-            const CustomTextFormField(label: 'Enter your email'),
-            SizedBox(height: AppSize.s26.r),
-            CustomElevatedButton(
-              title: 'Send Code',
-              onPressed: () => context.push(Routes.otpVerifcationRoute),
-            ),
-            SizedBox(height: AppSize.s56.r),
-            CustomTextRow(
-              data: 'Remember Password?',
-              text: 'Login',
-              onPressed: () => context.push(Routes.loginRoute),
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: AppSize.s15.r),
+              const CustomArrowBackButton(),
+              SizedBox(height: AppSize.s20.h),
+              const CustomAppBar(
+                title: 'Forgot Password?',
+                isSupTitle: true,
+                supTitle:
+                    'Don\'t worry! It occurs. Please enter the email address linked with your account.',
+              ),
+              SizedBox(height: AppSize.s26.r),
+              CustomTextFormField(
+                label: 'Enter your email',
+                controller: _emailController,
+                validator: (value) {
+                  if (value!.isEmpty || !value.contains('@')) {
+                    return 'Please enter a valid email';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              SizedBox(height: AppSize.s26.r),
+              CustomElevatedButton(
+                title: 'Send Code',
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    context.push(Routes.otpVerifcationRoute);
+                  }
+                  return;
+                },
+              ),
+              SizedBox(height: AppSize.s56.r),
+              CustomTextRow(
+                data: 'Remember Password?',
+                text: 'Login',
+                onPressed: () => context.pushReplacement(Routes.loginRoute),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
   }
 }

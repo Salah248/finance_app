@@ -17,35 +17,74 @@ class CreateNewPasswordScreen extends StatefulWidget {
 }
 
 class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(AppSize.s22.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: AppSize.s15.r),
-            const CustomArrowBackButton(),
-            SizedBox(height: AppSize.s20.h),
-            const CustomAppBar(
-              title: 'Create new password',
-              isSupTitle: true,
-              supTitle:
-                  'Your new password must be unique from those previously used.',
-            ),
-            SizedBox(height: AppSize.s26.r),
-            const CustomTextFormField(label: 'New Password'),
-            SizedBox(height: AppSize.s15.r),
-            const CustomTextFormField(label: 'Confirm Password'),
-            SizedBox(height: AppSize.s26.r),
-            CustomElevatedButton(
-              title: 'Reset Password',
-              onPressed: () => context.push(Routes.passwordChangedRoute),
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: AppSize.s15.r),
+              const CustomArrowBackButton(),
+              SizedBox(height: AppSize.s20.h),
+              const CustomAppBar(
+                title: 'Create new password',
+                isSupTitle: true,
+                supTitle:
+                    'Your new password must be unique from those previously used.',
+              ),
+              SizedBox(height: AppSize.s26.r),
+              CustomTextFormField(
+                label: 'New Password',
+                controller: _passwordController,
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 6) {
+                    return 'Please enter a valid password';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              SizedBox(height: AppSize.s15.r),
+              CustomTextFormField(
+                label: 'Confirm Password',
+                controller: _confirmPasswordController,
+                validator: (value) {
+                  if (value == null ||
+                      value.isEmpty ||
+                      value != _passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: AppSize.s26.r),
+              CustomElevatedButton(
+                title: 'Reset Password',
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    context.pushReplacement(Routes.passwordChangedRoute);
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }

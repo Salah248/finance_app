@@ -5,9 +5,9 @@ class ImagesManager {
 }
 
 class IconsManager {
-  static const String apple = 'asset/icons/cib_apple.svg';
-  static const String facebook = 'asset/icons/facebook_ic.svg';
-  static const String google = 'asset/icons/google_ic.svg';
-  static const String group = 'asset/icons/Group.svg';
-  static const String vector = 'asset/icons/Vector.svg';
+  static const String apple = 'asset/icons/apple.svg';
+  static const String facebook = 'asset/icons/facebook.svg';
+  static const String google = 'asset/icons/google.svg';
+  static const String arrowBack = 'asset/icons/arrow_back.svg';
+  static const String halfEye = 'asset/icons/half_eye.svg';
 }

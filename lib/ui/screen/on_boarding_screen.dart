@@ -41,7 +41,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               onPressed: () => context.push(Routes.registerRoute),
             ),
             SizedBox(height: AppSize.s15.h),
-            CustomTextButton(text: 'Continue as a guest', onPressed: () {}),
+            CustomTextButton(
+              text: 'Continue as a guest',
+              onPressed: () => context.pushReplacement(Routes.homeRoute),
+            ),
           ],
         ),
       ),

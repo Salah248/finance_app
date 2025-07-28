@@ -14,6 +14,20 @@ class CustomOtpField extends StatelessWidget {
     return Pinput(
       length: 4,
       defaultPinTheme: defaultPinTheme,
+      closeKeyboardWhenCompleted: true,
+      keyboardType: TextInputType.number,
+      validator: (value) {
+        if (value!.isEmpty || value.length != 4 || value.contains(' ')) {
+          return 'Please enter 4 digit number';
+        }
+        return null;
+      },
+      errorPinTheme: defaultPinTheme.copyWith(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.red),
+          borderRadius: BorderRadius.circular(RaduisSize.r8),
+        ),
+      ),
       focusedPinTheme: defaultPinTheme.copyWith(
         decoration: BoxDecoration(
           border: Border.all(color: ColorManager.secondary2Primary),
