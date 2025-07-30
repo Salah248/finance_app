@@ -4,21 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomIconContainer extends StatelessWidget {
-  const CustomIconContainer({
-    super.key,
-    required this.assetName,
-    this.onTap,
-    this.width,
-    this.height,
-  });
+  const CustomIconContainer({super.key, required this.assetName, this.onTap});
   final String assetName;
   final void Function()? onTap;
-  final double? width;
-  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         width: AppSize.s105.w,
@@ -27,12 +19,7 @@ class CustomIconContainer extends StatelessWidget {
           border: Border.all(color: const Color(0xffE8ECF4), width: 1.w),
           borderRadius: BorderRadius.circular(RaduisSize.r8.r),
         ),
-        child: SvgPicture.asset(
-          assetName,
-          fit: BoxFit.none,
-          width: width!.w,
-          height: height!.h,
-        ),
+        child: SvgPicture.asset(assetName, fit: BoxFit.scaleDown),
       ),
     );
   }

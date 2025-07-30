@@ -8,4 +8,6 @@ class ColorManager {
   static const Color white = Color(0xFFFFFFFF);
   static const Color darkGray = Color(0xFF6A707C);
   static const Color dateButton = Color(0xFFB9C4FF);
+  static const Color neutral = Color(0xFF9CA4AB);
+  static const Color neutral2 = Color(0xFF1F2C37);
 }

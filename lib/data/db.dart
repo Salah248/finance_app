@@ -57,4 +57,19 @@ class DbHelper {
       return null;
     }
   }
+
+  static Future<RegisterModel?> getUsername(String? userName) async {
+    if (userName == null) return null;
+    final List<Map<String, dynamic>> result = await _db!.query(
+      _tableName,
+      where: 'userName = ?',
+      whereArgs: [userName],
+    );
+
+    if (result.isNotEmpty) {
+      return RegisterModel.fromMap(result.first);
+    } else {
+      return null;
+    }
+  }
 }

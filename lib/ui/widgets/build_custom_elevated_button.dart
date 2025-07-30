@@ -10,17 +10,19 @@ class CustomElevatedButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
-    this.isLogin = true,
+    this.isInLoginBtn = true,
   });
 
   final String title;
   final VoidCallback onPressed;
-  final bool? isLogin;
+  final bool? isInLoginBtn;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: isLogin! ? ColorManager.primary : ColorManager.white,
+        backgroundColor: isInLoginBtn!
+            ? ColorManager.primary
+            : ColorManager.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(RaduisSize.r8.r),
         ),
@@ -36,7 +38,7 @@ class CustomElevatedButton extends StatelessWidget {
         title,
         style: StyleManager.urbanistSemiBold.copyWith(
           fontSize: FontSize.fs15.sp,
-          color: isLogin! ? ColorManager.white : ColorManager.primary,
+          color: isInLoginBtn! ? ColorManager.white : ColorManager.primary,
         ),
       ),
     );

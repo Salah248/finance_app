@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp.router(
         title: 'Finance App',
-        theme: ThemeData(useMaterial3: true),
         debugShowCheckedModeBanner: false,
         routerConfig: RouteManager.router,
       ),

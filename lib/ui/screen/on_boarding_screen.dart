@@ -30,20 +30,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
             SizedBox(height: AppSize.s15.h),
             CustomElevatedButton(
-              isLogin: true,
+              isInLoginBtn: true,
               title: 'Login',
               onPressed: () => context.push(Routes.loginRoute),
             ),
             SizedBox(height: AppSize.s15.h),
             CustomElevatedButton(
-              isLogin: false,
+              isInLoginBtn: false,
               title: 'Register',
               onPressed: () => context.push(Routes.registerRoute),
             ),
             SizedBox(height: AppSize.s15.h),
             CustomTextButton(
               text: 'Continue as a guest',
-              onPressed: () => context.pushReplacement(Routes.homeRoute),
+              onPressed: () => context.pushReplacement(Routes.mainRoute),
             ),
           ],
         ),

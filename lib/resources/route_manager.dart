@@ -1,14 +1,15 @@
-import 'package:finance_app/ui/screen/create_new_password_screen.dart';
-import 'package:finance_app/ui/screen/forgot_password_screen.dart';
-import 'package:finance_app/ui/screen/home_screen.dart';
-import 'package:finance_app/ui/screen/login_screen.dart';
-import 'package:finance_app/ui/screen/my_card_screen.dart';
-import 'package:finance_app/ui/screen/my_profile_screen.dart';
+import 'package:finance_app/ui/screen/auth/create_new_password_screen.dart';
+import 'package:finance_app/ui/screen/auth/forgot_password_screen.dart';
+import 'package:finance_app/ui/screen/main/home_screen.dart';
+import 'package:finance_app/ui/screen/auth/login_screen.dart';
+import 'package:finance_app/ui/screen/main/main_screen.dart';
+import 'package:finance_app/ui/screen/main/my_card_screen.dart';
+import 'package:finance_app/ui/screen/main/my_profile_screen.dart';
 import 'package:finance_app/ui/screen/on_boarding_screen.dart';
-import 'package:finance_app/ui/screen/otp_verifcation_screen.dart';
-import 'package:finance_app/ui/screen/password_changed_screen.dart';
-import 'package:finance_app/ui/screen/register_screen.dart';
-import 'package:finance_app/ui/screen/statistic_screen.dart';
+import 'package:finance_app/ui/screen/auth/otp_verifcation_screen.dart';
+import 'package:finance_app/ui/screen/auth/password_changed_screen.dart';
+import 'package:finance_app/ui/screen/auth/register_screen.dart';
+import 'package:finance_app/ui/screen/main/statistic_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class Routes {
@@ -19,6 +20,7 @@ class Routes {
   static const String createNewPasswordRoute = '/createNewPassword';
   static const String passwordChangedRoute = '/passwordChanged';
   static const String otpVerifcationRoute = '/otpVerifcation';
+  static const String mainRoute = '/main';
   static const String homeRoute = '/home';
   static const String myCardRoute = '/myCard';
   static const String myProfileRoute = '/myProfile';
@@ -55,6 +57,10 @@ class RouteManager {
       GoRoute(
         path: Routes.passwordChangedRoute,
         builder: (context, state) => const PasswordChangedScreen(),
+      ),
+      GoRoute(
+        path: Routes.mainRoute,
+        builder: (context, state) => const MainScreen(),
       ),
       GoRoute(
         path: Routes.homeRoute,

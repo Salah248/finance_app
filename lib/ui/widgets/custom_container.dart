@@ -36,27 +36,11 @@ class CustomContainer extends StatelessWidget {
         ),
         SizedBox(height: AppSize.s38.h),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomIconContainer(
-              assetName: IconsManager.facebook,
-              onTap: () {},
-              width: AppSize.s12,
-              height: AppSize.s24,
-            ),
-            SizedBox(width: AppSize.s10.w),
-            CustomIconContainer(
-              assetName: IconsManager.google,
-              onTap: () {},
-              width: AppSize.s23,
-              height: AppSize.s23,
-            ),
-            SizedBox(width: AppSize.s10.w),
-            CustomIconContainer(
-              assetName: IconsManager.apple,
-              onTap: () {},
-              width: AppSize.s21,
-              height: AppSize.s26,
-            ),
+            CustomIconContainer(assetName: IconsManager.facebook, onTap: () {}),
+            CustomIconContainer(assetName: IconsManager.google, onTap: () {}),
+            CustomIconContainer(assetName: IconsManager.apple, onTap: () {}),
           ],
         ),
       ],

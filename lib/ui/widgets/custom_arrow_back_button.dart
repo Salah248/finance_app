@@ -5,25 +5,35 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomArrowBackButton extends StatelessWidget {
-  const CustomArrowBackButton({super.key});
+class CustomAppBarIconButton extends StatelessWidget {
+  const CustomAppBarIconButton({
+    super.key,
+    this.isInMainScreens = false,
+    this.assetName,
+  });
 
+  final bool? isInMainScreens;
+  final String? assetName;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pop(),
+      onTap: () => isInMainScreens!
+          ? print('Notifaction is in main screens')
+          : context.pop(),
       child: Container(
-        height: AppSize.s41.h,
-        width: AppSize.s41.w,
+        height: isInMainScreens! ? 48.h : AppSize.s41.h,
+        width: isInMainScreens! ? 48.w : AppSize.s41.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(RaduisSize.r12),
-          border: Border.all(color: const Color(0xffE8ECF4)),
+          border: Border.all(
+            color: isInMainScreens!
+                ? const Color(0xffE3E9ED)
+                : const Color(0xffE8ECF4),
+          ),
         ),
         child: SvgPicture.asset(
-          IconsManager.arrowBack,
-          fit: BoxFit.none,
-          width: 8.5.w,
-          height: 14.8.h,
+          isInMainScreens! ? assetName! : IconsManager.arrowBack,
+          fit: BoxFit.scaleDown,
         ),
       ),
     );
