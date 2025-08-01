@@ -9,7 +9,7 @@ import 'package:finance_app/resources/route_manager.dart';
 import 'package:finance_app/resources/style_manager.dart';
 import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
-import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
+import 'package:finance_app/ui/widgets/custom_app_barr_icon_button.dart';
 import 'package:finance_app/ui/widgets/custom_container.dart';
 import 'package:finance_app/ui/widgets/custom_snack_bar.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
@@ -22,7 +22,6 @@ import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -32,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   title: 'Login',
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
+                      // هنا الفرق! بنبعت بس email و password
                       final user = await DbHelper.getUserByEmailAndPassword(
                         _emailController.text,
                         _passwordController.text,
@@ -119,9 +120,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       if (user != null) {
                         showSnackBar(context, 'Login successful!');
+                        // بنبعت الـ username من الـ user اللي جه من الـ database
                         context.pushReplacement(
                           Routes.mainRoute,
-                        ); // روح للصفحة الرئيسية
+                          extra:
+                              user.userName, // هنا الـ username من الـ database
+                        );
                       } else {
                         showSnackBar(context, 'Invalid email or password');
                       }

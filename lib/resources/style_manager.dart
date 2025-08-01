@@ -14,6 +14,10 @@ class StyleManager {
     fontFamily: FontConstants.fontFamily,
     fontWeight: FontWeightManager.medium,
   );
+  static const TextStyle interBold = TextStyle(
+    fontFamily: FontConstants.fontFamily2,
+    fontWeight: FontWeightManager.bold,
+  );
   static const TextStyle interSemiBold = TextStyle(
     fontFamily: FontConstants.fontFamily2,
     fontWeight: FontWeightManager.semiBold,

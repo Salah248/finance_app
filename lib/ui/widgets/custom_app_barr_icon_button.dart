@@ -24,6 +24,9 @@ class CustomAppBarIconButton extends StatelessWidget {
         height: isInMainScreens! ? 48.h : AppSize.s41.h,
         width: isInMainScreens! ? 48.w : AppSize.s41.w,
         decoration: BoxDecoration(
+          color: isInMainScreens!
+              ? const Color(0xffECF1F6)
+              : const Color(0xffFDFDFD),
           borderRadius: BorderRadius.circular(RaduisSize.r12),
           border: Border.all(
             color: isInMainScreens!

@@ -3,6 +3,8 @@ class ImagesManager {
       'asset/images/generated-7577945_1280 1.png';
   static const String stickerImage = 'asset/images/Sticker.png';
   static const String profImage = 'asset/images/1349379.png';
+  static const String ellipse14 = 'asset/images/Ellipse 14.png';
+  static const String ellipse15 = 'asset/images/Ellipse 15.png';
 }
 
 class IconsManager {
@@ -23,5 +25,6 @@ class IconsManager {
   static const String notification = 'asset/icons/Notification.svg';
   static const String chart = 'asset/icons/Chart.svg';
   static const String wallet = 'asset/icons/Wallet.svg';
+  static const String pay = 'asset/icons/pay.svg';
   static const String group_363 = 'asset/icons/Group 363.svg';
 }

@@ -2,7 +2,7 @@ import 'package:finance_app/resources/app_size.dart';
 import 'package:finance_app/resources/route_manager.dart';
 import 'package:finance_app/ui/widgets/build_custom_elevated_button.dart';
 import 'package:finance_app/ui/widgets/custom_app_bar.dart';
-import 'package:finance_app/ui/widgets/custom_arrow_back_button.dart';
+import 'package:finance_app/ui/widgets/custom_app_barr_icon_button.dart';
 import 'package:finance_app/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

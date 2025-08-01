@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp.router(
         title: 'Finance App',
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         routerConfig: RouteManager.router,
       ),
     );

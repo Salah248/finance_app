@@ -41,6 +41,7 @@ class DbHelper {
     return await _db!.query(_tableName);
   }
 
+  // الطريقة الجديدة للـ Login - بتاخد بس email و password
   static Future<RegisterModel?> getUserByEmailAndPassword(
     String email,
     String password,
@@ -58,12 +59,12 @@ class DbHelper {
     }
   }
 
-  static Future<RegisterModel?> getUsername(String? userName) async {
-    if (userName == null) return null;
+  // طريقة جديدة للـ Registration - للتأكد من عدم وجود حساب بنفس الـ email
+  static Future<RegisterModel?> getUserByEmail(String email) async {
     final List<Map<String, dynamic>> result = await _db!.query(
       _tableName,
-      where: 'userName = ?',
-      whereArgs: [userName],
+      where: 'email = ?',
+      whereArgs: [email],
     );
 
     if (result.isNotEmpty) {
@@ -71,5 +72,10 @@ class DbHelper {
     } else {
       return null;
     }
+  }
+
+  static Future<void> deleteAuthData() async {
+    debugPrint('deleted');
+    await _db!.delete(_tableName);
   }
 }

@@ -36,7 +36,9 @@ class RouteManager {
       ),
       GoRoute(
         path: Routes.loginRoute,
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) {
+          return const LoginScreen();
+        },
       ),
       GoRoute(
         path: Routes.registerRoute,
@@ -60,11 +62,15 @@ class RouteManager {
       ),
       GoRoute(
         path: Routes.mainRoute,
-        builder: (context, state) => const MainScreen(),
+        builder: (context, state) {
+          return MainScreen(username: state.extra as String?);
+        },
       ),
       GoRoute(
         path: Routes.homeRoute,
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) {
+          return HomeScreen(username: state.extra as String?);
+        },
       ),
       GoRoute(
         path: Routes.myCardRoute,

@@ -11,20 +11,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
+  const MainScreen({super.key, this.username});
+  final String? username;
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const StatisticScreen(),
-    const AddScreen(),
-    const MyCardScreen(),
-    const MyProfileScreen(),
-  ];
+  late final List<Widget> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      HomeScreen(username: widget.username),
+      const StatisticScreen(),
+      const AddScreen(),
+      const MyCardScreen(),
+      const MyProfileScreen(),
+    ];
+  }
+
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
