@@ -39,7 +39,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: AppSize.s15.r),
-                const CustomAppBarIconButton(),
+                CustomAppBarIconButton(
+                  isInMainScreens: false,
+                  onTap: () => context.pop(),
+                ),
                 SizedBox(height: AppSize.s20.h),
                 const CustomAppBar(
                   title: 'Hello! Register to get\nstarted',

@@ -27,4 +27,5 @@ class IconsManager {
   static const String wallet = 'asset/icons/Wallet.svg';
   static const String pay = 'asset/icons/pay.svg';
   static const String group_363 = 'asset/icons/Group 363.svg';
+  static const String visa = 'asset/icons/visa.svg';
 }
