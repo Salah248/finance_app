@@ -10,16 +10,21 @@ class CustomSection extends StatelessWidget {
     required this.assetName,
     required this.text,
     required this.text2,
+    this.isInStatisticScreen = false,
   });
   final String assetName;
   final String text;
   final String text2;
+  final bool? isInStatisticScreen;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 156.w,
       height: 140.h,
+      padding: isInStatisticScreen!
+          ? EdgeInsets.only(left: 16.r)
+          : EdgeInsets.zero,
       decoration: BoxDecoration(
         color: ColorManager.neutral3,
         borderRadius: BorderRadius.circular(16.r),
@@ -27,7 +32,9 @@ class CustomSection extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: isInStatisticScreen!
+            ? CrossAxisAlignment.start
+            : CrossAxisAlignment.center,
         children: [
           CustomIconContainer(
             assetName: assetName,
