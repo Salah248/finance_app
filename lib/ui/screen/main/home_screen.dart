@@ -3,7 +3,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:finance_app/resources/assets_manager.dart';
 import 'package:finance_app/resources/color_manager.dart';
 import 'package:finance_app/resources/style_manager.dart';
-import 'package:finance_app/ui/widgets/custom_app_barr_icon_button.dart';
 import 'package:finance_app/ui/widgets/custom_credit_card.dart';
 import 'package:finance_app/ui/widgets/custom_section.dart';
 import 'package:flutter/material.dart';

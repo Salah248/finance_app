@@ -51,7 +51,7 @@ class CustomAppBarMain extends StatelessWidget {
           icon: SvgPicture.asset(
             isInMyProfilePage! ? IconsManager.editSquare : IconsManager.more,
             fit: BoxFit.scaleDown,
-            color: Colors.black,
+            color: isInMyProfilePage! ? const Color(0xff4F3D56) : Colors.black,
           ),
         ),
       ],
